@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/29271204/README.md)
 # DailyDrills — TeamSmith
 
 A family reflection app built on the science of structured self-monitoring. Every day, Justin, Mom, and Parker get personalized prompts, a mood check-in, and a shared family feed — all backed by Supabase.

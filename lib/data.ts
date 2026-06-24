@@ -54,8 +54,8 @@ export const MEMBERS: Member[] = [
   },
   {
     id: "mom",
-    name: "Mom",
-    initials: "M",
+    name: "Shelby",
+    initials: "S",
     color: "#1D9E75",
     bgColor: "#E1F5EE",
     textColor: "#085041",
@@ -180,8 +180,8 @@ export const PROMPTS: Record<MemberId, Prompt[]> = {
 export const FEED_ENTRIES: FeedEntry[] = [
   {
     memberId: "mom",
-    name: "Mom",
-    initials: "M",
+    name: "Shelby",
+    initials: "S",
     bgColor: "#E1F5EE",
     textColor: "#085041",
     timeAgo: "1h ago",

@@ -24,7 +24,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Run `supabase-schema.sql` once in your [Supabase SQL Editor](https://supabase.com/dashboard/project/_/sql/new). It creates:
 
-- `members` — Justin, Mom, Parker
+- `members` — Justin, Shelby, Parker
 - `entries` — all reflection entries (private by default)
 - `family_feed` view — today's shared entries across the family
 

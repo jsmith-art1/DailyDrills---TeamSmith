@@ -63,7 +63,7 @@ export const MEMBERS: Member[] = [
     totalEntries: 61,
     familyShares: 22,
     streakLine: "8-day streak. Solid.",
-    greeting: "Good evening.",
+    greeting: "Good evening, Shelby.",
     insight:
       "Your mood on days you wrote more than 3 sentences averages significantly higher. Longer entries seem to help.",
   },

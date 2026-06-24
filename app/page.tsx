@@ -25,10 +25,7 @@ export default function TodayPage() {
 
   return (
     <main>
-      <header className="px-6 py-5 border-b border-black/10 flex items-center justify-between">
-        <div className="text-[17px] font-medium tracking-tight">
-          daily<span style={{ color: "#7F77DD" }}>human</span>
-        </div>
+      <header className="px-6 py-5 border-b border-black/10 flex items-center justify-end">
         <div className="text-[12px] text-black/40 bg-black/5 px-3 py-1 rounded-full">
           {new Date().toLocaleDateString("en-US", {
             weekday: "short",

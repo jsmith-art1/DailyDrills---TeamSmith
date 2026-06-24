@@ -1,6 +1,6 @@
 # DailyDrills — TeamSmith
 
-A family reflection app built on the science of structured self-monitoring. Every day, Justin, Mom, and Parker get personalized prompts, a mood check-in, and a shared family feed — all backed by Supabase.
+A family reflection app built on the science of structured self-monitoring. Every day, Justin, Shelby, and Parker get personalized prompts, a mood check-in, and a shared family feed — all backed by Supabase.
 
 Built with **Next.js 16 (App Router)** · **Tailwind 4** · **Supabase** · **TypeScript**
 

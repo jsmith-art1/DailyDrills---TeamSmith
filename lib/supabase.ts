@@ -1,9 +1,4 @@
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
 export type DbEntry = {
   id: string;
@@ -27,7 +22,52 @@ export type DbFeedEntry = {
   created_at: string;
 };
 
+type Database = {
+  public: {
+    Tables: {
+      entries: {
+        Row: DbEntry;
+        Insert: Omit<DbEntry, "id" | "created_at">;
+        Update: Partial<Omit<DbEntry, "id">>;
+        Relationships: [];
+      };
+    };
+    Views: {
+      family_feed: {
+        Row: DbFeedEntry;
+        Relationships: [];
+      };
+    };
+    Functions: Record<string, never>;
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
+  };
+};
+
+let supabaseClient: SupabaseClient<Database> | null = null;
+
+function getSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) return null;
+
+  supabaseClient ??= createClient<Database>(supabaseUrl, supabaseAnonKey);
+  return supabaseClient;
+}
+
+function requireSupabase() {
+  const supabase = getSupabase();
+  if (!supabase) {
+    throw new Error(
+      "Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY."
+    );
+  }
+  return supabase;
+}
+
 export async function saveEntry(entry: Omit<DbEntry, "id" | "created_at">) {
+  const supabase = requireSupabase();
   const { data, error } = await supabase
     .from("entries")
     .insert(entry)
@@ -38,6 +78,9 @@ export async function saveEntry(entry: Omit<DbEntry, "id" | "created_at">) {
 }
 
 export async function getTodayFeed(): Promise<DbFeedEntry[]> {
+  const supabase = getSupabase();
+  if (!supabase) return [];
+
   const { data, error } = await supabase
     .from("family_feed")
     .select("*")
@@ -47,6 +90,9 @@ export async function getTodayFeed(): Promise<DbFeedEntry[]> {
 }
 
 export async function getMemberStreak(memberId: string): Promise<number> {
+  const supabase = getSupabase();
+  if (!supabase) return 0;
+
   const { data, error } = await supabase
     .from("entries")
     .select("created_at")
@@ -69,6 +115,9 @@ export async function getMemberStreak(memberId: string): Promise<number> {
 }
 
 export async function getMemberEntryCount(memberId: string): Promise<number> {
+  const supabase = getSupabase();
+  if (!supabase) return 0;
+
   const { count, error } = await supabase
     .from("entries")
     .select("*", { count: "exact", head: true })

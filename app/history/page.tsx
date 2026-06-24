@@ -4,8 +4,8 @@ export default function Page() {
   return (
     <main>
       <header className="px-6 py-5 border-b border-black/10">
-        <div className="text-[17px] font-medium tracking-tight">
-          daily<span style={{ color: "#7F77DD" }}>human</span>
+        <div className="text-[17px] font-medium tracking-tight text-black">
+          TeamSmith - Daily Drills
         </div>
       </header>
       <div className="px-6 py-16 text-center">

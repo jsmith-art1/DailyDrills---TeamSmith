@@ -32,7 +32,26 @@ export default function FamilyFeed({ refreshKey }: Props) {
     }
   }, []);
 
-  useEffect(() => { load(); }, [load, refreshKey]);
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadInitialEntries() {
+      try {
+        const data = await getTodayFeed();
+        if (!cancelled) setEntries(data);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    loadInitialEntries();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [refreshKey]);
 
   return (
     <div className="px-6 py-5 border-b border-black/10">

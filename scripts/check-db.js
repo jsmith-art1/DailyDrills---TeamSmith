@@ -1,11 +1,10 @@
-const { createClient } = require("@supabase/supabase-js");
-
-const supabase = createClient(
-  "https://xbqhtcqvbcndikuqsesz.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhicWh0Y3F2YmNuZGlrdXFzZXN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2NzExOTEsImV4cCI6MjA5NjI0NzE5MX0.nmXeAvGQMfsamFDapBzO0JJiMXCqov7LNEyuUlnSJA8"
-);
-
 async function run() {
+  const { createClient } = await import("@supabase/supabase-js");
+  const supabase = createClient(
+    "https://xbqhtcqvbcndikuqsesz.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhicWh0Y3F2YmNuZGlrdXFzZXN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA2NzExOTEsImV4cCI6MjA5NjI0NzE5MX0.nmXeAvGQMfsamFDapBzO0JJiMXCqov7LNEyuUlnSJA8"
+  );
+
   // Test connection
   const { data, error } = await supabase.from("members").select("id").limit(1);
   if (error && error.code === "42P01") {

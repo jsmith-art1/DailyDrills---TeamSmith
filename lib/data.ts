@@ -1,4 +1,4 @@
-export type MemberId = "justin" | "mom" | "parker";
+export type MemberId = "justin" | "shelby" | "parker";
 
 export interface Member {
   id: MemberId;
@@ -53,7 +53,7 @@ export const MEMBERS: Member[] = [
       "You've logged \"drained\" 3 evenings this week. Your best days started with a morning prompt. Worth trying that tomorrow.",
   },
   {
-    id: "mom",
+    id: "shelby",
     name: "Shelby",
     initials: "S",
     color: "#1D9E75",
@@ -116,7 +116,7 @@ export const PROMPTS: Record<MemberId, Prompt[]> = {
       shared: true,
     },
   ],
-  mom: [
+  shelby: [
     {
       id: "m1",
       tag: "Quick win",
@@ -179,7 +179,7 @@ export const PROMPTS: Record<MemberId, Prompt[]> = {
 
 export const FEED_ENTRIES: FeedEntry[] = [
   {
-    memberId: "mom",
+    memberId: "shelby",
     name: "Shelby",
     initials: "S",
     bgColor: "#E1F5EE",

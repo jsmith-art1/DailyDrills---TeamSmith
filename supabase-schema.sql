@@ -1,6 +1,6 @@
 -- Members table
 create table if not exists members (
-  id text primary key,         -- 'justin' | 'mom' | 'parker'
+  id text primary key,         -- 'justin' | 'shelby' | 'parker'
   name text not null,
   initials text not null,
   color text not null,
@@ -10,7 +10,7 @@ create table if not exists members (
 
 insert into members (id, name, initials, color, bg_color, text_color) values
   ('justin', 'Justin', 'J', '#7F77DD', '#EEEDFE', '#3C3489'),
-  ('mom',    'Shelby', 'S', '#1D9E75', '#E1F5EE', '#085041'),
+  ('shelby', 'Shelby', 'S', '#1D9E75', '#E1F5EE', '#085041'),
   ('parker', 'Parker', 'P', '#BA7517', '#FAEEDA', '#633806')
 on conflict (id) do update set
   name = excluded.name,
@@ -33,6 +33,9 @@ create table if not exists entries (
 -- Index for fast daily queries
 create index if not exists entries_member_date on entries (member_id, created_at);
 
+update entries set member_id = 'shelby' where member_id = 'mom';
+delete from members where id = 'mom';
+
 -- App access policies for the public anon key used by this family app
 alter table members enable row level security;
 alter table entries enable row level security;
@@ -50,7 +53,7 @@ create policy "Entries are readable"
 drop policy if exists "Entries can be created" on entries;
 create policy "Entries can be created"
   on entries for insert
-  with check (member_id in ('justin', 'mom', 'parker'));
+  with check (member_id in ('justin', 'shelby', 'parker'));
 
 grant usage on schema public to anon, authenticated;
 grant select on members to anon, authenticated;

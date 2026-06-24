@@ -82,7 +82,7 @@ supabase-schema.sql     # Run once to set up the database
 
 ## What's live
 
-- Profile switching — Justin, Mom, Parker each get their own prompts and greeting
+- Profile switching — Justin, Shelby, Parker each get their own prompts and greeting
 - Mood check-in — saved per entry
 - Prompts — 3 per person (quick win, deeper look, family share)
 - Saves to Supabase — every entry written to `entries` table with mood + member

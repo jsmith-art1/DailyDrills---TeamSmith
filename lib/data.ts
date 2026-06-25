@@ -217,5 +217,3 @@ export const MOODS = [
   { emoji: "😊", label: "Good" },
   { emoji: "🤩", label: "Fired up" },
 ];
-
-export const DAYS = ["M", "T", "W", "Th", "F", "Sa", "Su"];
